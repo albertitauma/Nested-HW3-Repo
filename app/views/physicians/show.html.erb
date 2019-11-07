@@ -10,17 +10,11 @@
   <%= @physician.specialty %>
 </p>
 
+
 <hr>
 
-<h3>Office Information</h3>
-<ul>
-    <% @physician.offices.each do |office|%>
-        <li><%= office.address %> | <%= office.zip %> | <%= office.phone %></li> 
-      
-    <% end %>
-</ul>
 
-
+<h3> Office Information Full Table </h3>
 <div class = "location-table">
   <table class = "blueTable">
     <thead>
@@ -46,9 +40,48 @@
 
 
 
+<h3> Current Appointments Full Table </h3>
+<div class = "location-table">
+  <table class = "blueTable">
+    <thead>
+      <tr>
+        <th>Patients Name </th>
+        <th>Date of Appointment </th>
+      </tr>
+    </thead>
+
+<tbody>
+    <% @physician.appointments.each do |appointment|%>
+      <tr>
+        <td><%= appointment.patient.name %></td>
+        <td><%= appointment.visit.strftime(" %B %e, %Y ") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
 
 
 <%= link_to 'Edit', edit_physician_path(@physician) %> |
 <%= link_to 'Back', physicians_path %>
 
+<hr>
 
+
+
+<h3> Appointment Test Table </h3>
+<ul>
+    <% @physician.appointments.each do |appointment|%>
+        <li><%= appointment.patient.name %> | <%= appointment.visit.strftime(" %B %e, %Y ") %> </li> 
+      
+    <% end %>
+</ul>
+
+<h3> Office Information Test</h3>
+<ul>
+    <% @physician.offices.each do |office|%>
+        <li><%= office.address %> | <%= office.zip %> | <%= office.phone %></li> 
+      
+    <% end %>
+</ul>
